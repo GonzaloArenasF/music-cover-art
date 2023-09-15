@@ -8,8 +8,10 @@ body {
     font-family: 'Comfortaa', cursive;
     font-size: 16px;
     line-height: 1.55rem;
-    margin: 0 auto;
-    max-width: 1200px;
+}
+
+a {
+    text-decoration: none;
 }
 
 header,
@@ -61,10 +63,19 @@ main {
     grid: 
         'intro intro intro' 
         'catalog catalog aside';
+    margin: 0 auto;
+    max-width: 1200px;
 }
 
-main .intro { grid-area: intro; }
+main .intro {
+    display: grid;
+    align-items: center;
+    grid-area: intro;
+    height: 300px;
+}
+
 main .catalog { grid-area: catalog; }
+
 main aside { 
     border-left: 1px dotted black;
     grid-area: aside; 
@@ -75,11 +86,68 @@ main .title {
     text-align: center;
 }
 
+main .catalog .search-form {
+    display: flex;
+    justify-content: start;
+    margin-bottom: 1rem;
+}
+
+main .catalog .search-form input {
+    font-size: 1.2rem;
+    height: 2.5rem;
+    padding: 0.3rem 1rem;
+    width: 100%;
+}
+
+main .catalog .search-form button {
+    font-size: 1.2rem;
+    height: 3.4rem;
+    width: 150px;
+}
+
+main .catalog .list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+}
+
+main .catalog .list .album {
+    text-align: center;
+}
+
+main .catalog .list .album figure {
+ margin: 0;
+}
+
+main .catalog .list .album figure > img {
+    box-shadow: 0px 5px 8px black;
+    margin-bottom: 1rem;
+}
+
+main .catalog .list .album figure figcaption {
+    display: flex;
+    justify-content: space-between;
+}
+
+main .catalog .list .album figure figcaption h4 {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+main .catalog .list .album p {
+    margin: 0;
+}
+
 footer {
     background-color: var(--shadow1);
+}
+
+footer section {
     display: grid;
     font-size: .7rem;
     grid: 50% / auto auto;
     line-height: 1rem;
-    margin-top: 1rem;
+    margin: 1rem auto 0 auto;
+    max-width: 1200px;
 }
