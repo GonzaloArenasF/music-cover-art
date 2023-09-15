@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Rubik+Mono+One&display=swap');
+
+:root {
+    --shadow1: rgba(200, 200 ,200, 0.1);
+  }
+
+body {
+    font-family: 'Comfortaa', cursive;
+    font-size: 16px;
+    line-height: 1.55rem;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+header,
+main > *,
+footer > *,
+.loading  {
+    padding: .5rem 1rem;
+}
+
+h1, h2, .logo {
+    font-family: 'Rubik Mono One', sans-serif;
+}
+
+.loading {
+    text-align: center;
+}
+
+@keyframes spinning {
+    0%   { rotate: 0deg; }
+    100% { rotate: 369deg; }
+  }
+.loading i {
+    animation: spinning 2s linear 0s infinite;
+    font-size: 3rem;
+}
+
+header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+header figure,
+header nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+header figure {
+    width: 230px;
+}
+
+header nav {
+    width: 100px;
+}
+
+main {
+    display: grid;
+    grid: 
+        'intro intro intro' 
+        'catalog catalog aside';
+}
+
+main .intro { grid-area: intro; }
+main .catalog { grid-area: catalog; }
+main aside { 
+    border-left: 1px dotted black;
+    grid-area: aside; 
+}
+
+main .title {
+    font-size: 5rem;
+    text-align: center;
+}
+
+footer {
+    background-color: var(--shadow1);
+    display: grid;
+    font-size: .7rem;
+    grid: 50% / auto auto;
+    line-height: 1rem;
+    margin-top: 1rem;
+}
