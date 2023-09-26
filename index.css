@@ -2,7 +2,11 @@
 
 :root {
     --shadow1: rgba(200, 200 ,200, 0.1);
-  }
+}
+
+*:focus {
+    outline: none;
+}
 
 body {
     font-family: 'Comfortaa', cursive;
@@ -74,17 +78,13 @@ main .intro {
     height: 300px;
 }
 
-main .catalog { grid-area: catalog; }
-
-main aside { 
-    border-left: 1px dotted black;
-    grid-area: aside; 
-}
-
-main .title {
+main .intro .title {
     font-size: 5rem;
     text-align: center;
 }
+
+main .catalog { grid-area: catalog; }
+
 
 main .catalog .search-form {
     display: flex;
@@ -116,20 +116,27 @@ main .catalog .list .album {
 }
 
 main .catalog .list .album figure {
- margin: 0;
+    height: 300px;
+    margin: 0 0 1rem 0;
+    overflow: hidden;
+    transition: box-shadow .5s ease;
+    width: 300px;
 }
 
-main .catalog .list .album figure > img {
-    box-shadow: 0px 5px 8px black;
-    margin-bottom: 1rem;
+main .catalog .list .album figure img {
+    transition: transform 0.5s; 
+    -webkit-transition: -webkit-transform 0.5s;
 }
 
-main .catalog .list .album figure figcaption {
-    display: flex;
-    justify-content: space-between;
+main .catalog .list .album figure:hover {
+    box-shadow: 0px 5px 8px grey;
 }
 
-main .catalog .list .album figure figcaption h4 {
+main .catalog .list .album figure:hover > img {
+    transform: scale(1.15); -webkit-transform: scale(1.15);
+}
+
+main .catalog .list .album h4 {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -137,6 +144,12 @@ main .catalog .list .album figure figcaption h4 {
 
 main .catalog .list .album p {
     margin: 0;
+}
+
+main aside { 
+    border-left: 1px dotted black;
+    grid-area: aside; 
+    min-width: 300px;
 }
 
 footer {

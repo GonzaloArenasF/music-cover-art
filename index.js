@@ -15,34 +15,28 @@ function renderGender (data) {
     let genres_list = [];
     data.items.forEach(genre => genres_list.push(`<li>${genre.name}</li>`));
     document.getElementById('genres_list_loading').remove();
-    document.getElementById('genres_list').insertAdjacentHTML('afterend', genres_list.join(''));
+    document.getElementById('genres_list').insertAdjacentHTML('beforeend', genres_list.join(''));
 }
 
 function renderSearchingResults (data) {
-    console.log('data', data);
     let article = `<article class="album">
                         <figure>
                             <img src="{cover}" alt="{artist} - {album}">
-                            <figcaption>
-                                <h4>{album}</h4>
-                            </figcaption>
                         </figure>
+                        <h4>{album}</h4>
                         <p>{artist}</p>
                         <small>{year}</small>
                     </article>`;
 
-    let albumsList = [];
     data.items.forEach(item => {
-        let articleData = article.replace('{cover}', item.data.coverArt.sources[0].url);
-        articleData = articleData.replace('{artist}', item.data.artists.items[0].profile.name);
-        articleData = articleData.replace('{album}', item.data.name);
-        articleData = articleData.replace('{spotify}', item.data.uri);
-        articleData = articleData.replace('{year}', item.data.date.year);
+        let articleData = article.replaceAll('{cover}', item.data.coverArt.sources[0].url);
+        articleData = articleData.replaceAll('{artist}', item.data.artists.items[0].profile.name);
+        articleData = articleData.replaceAll('{album}', item.data.name);
+        articleData = articleData.replaceAll('{spotify}', item.data.uri);
+        articleData = articleData.replaceAll('{year}', item.data.date.year);
 
-        albumsList.push(articleData);
+        document.getElementById('albums_list').insertAdjacentHTML('beforeend', articleData);
     });
-
-    document.getElementById('albums_list').insertAdjacentHTML('afterend', albumsList.join(''));
 }
 
 function searchButtonToggle (text) {
@@ -51,6 +45,7 @@ function searchButtonToggle (text) {
 }
 
 async function searchAlbum () {
+    document.getElementById('albums_list').innerHTML = null;
     let catalogLoading = document.getElementById('catalog_loading');
     let textToSearch = document.getElementById('text_to_search').value;
     if (textToSearch != '') {
@@ -83,4 +78,10 @@ async function getData () {
 
 window.onload = function() {
     getData();
+
+    document.getElementById('text_to_search').addEventListener("keydown", function(event) {
+        if (event.key === "Enter" || event.keyCode === 13) {
+            searchAlbum();
+        }
+      });
 };
